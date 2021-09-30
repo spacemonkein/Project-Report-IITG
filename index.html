@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Satellite Remote Sensing of Soil Moisture</title>
+</head>
+<body>
+    <header>
+        <h4 class="intro"><strong>Report of the Industrial Training</strong></h4>
+        <h6 class="intro">at</h6>
+        <h3 class="intro"><strong>Indain Institute of Technology,Guwahati</strong></h3>
+        <h2 class="topic"><EM><strong>"Satellite Remote Sensing of Soil Moisture"</strong></EM></h2>
+		<p class="topic">Period
+			<br>
+			<strong>1st May 2021 to 14th June 2021</strong>
+			<br>
+			<br>
+
+			By
+		</p>
+
+        <p class="author">
+          Sourav Sinha Mahapatra (20118085)
+           <br >
+		  Harsh Aryan(20118037)
+		<br>
+		<br>
+
+		<div class="cusat">
+			<img src="./images/image001.png" class=" img-fluid img-thumbnail" alt="Cusat Logo" >
+		</div>
+		<br>
+		<br>
+
+			<div class="topic">
+			<strong>
+			SCHOOL OF ENGINEERING<br>
+				
+			COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY<br>
+
+			KOCHI, KERALA, INDIA, PIN-682 022
+			</strong>
+			</div>
+		
+		<!-- <div class="topic">
+			          <h4> September 2021</h4> -->
+		</div>
+      </header>
+	  <hr>
+      <div class="abs" >
+        <h2><strong>Acknowledgement</strong></h2>
+        <p >
+            We would like to thank Prof. <a href="https://www.iitg.ac.in/srees/homepage/index.html">Dr. Sreedeep Sekharan,</a> Indian Institute of Technology, Guwahati for giving us an internship opportunity under his kind supervision. We are also grateful for his guidance, sharp suggestions and constructive assessment of our work.We would like to thank our parents and siblings for their support throughout this internship.
+        </p>
+      </div>
+      
+      <div class="abs"  >
+        <h2>Abstract</h2>
+        <p class="abstract">
+            Soil moisture is an essential component in climatological, agronomical, construction and meteorological studies. Since soil moisture estimation used to be a subject of point-based measurements at a specific area and time, spatial and temporal changes were difficult to ascertain. The introduction of satellite remote sensing for soil moisture estimation has made it possible to overcome these limitations.
+            This paper explores SMAP soil moisture data (SPL3 Soil Moisture Enhanced Radiometer Level 3 product) to understand the soil moisture variation over the Indian subcontinent in the year 2020. The data acquired was used to generate monthly average soil moisture maps. The maps were assessed for studying the soil moisture spatial and temporal variations across the entire region. The processed data of soil moisture content from the generated maps were compared with the rainfall data, and it was found to be very well complementing the actual rainfall variation. The study shows that the soil moisture variation is in line with the seasonal change and the observed rainfall variation. 
+            This study aims to understand the concept and the theories behind remote sensing in soil moisture retrieval techniques and utilize the same in observing the seasonal, temporal, and spatial variations of soil moisture within the Indian subcontinent. The European Agency’s Soil Moisture and Ocean Salinity (SMOS) and NASA's Soil Moisture Active-Passive (SMAP) and their data retrieval techniques will also be the context of the discussion in this paper.
+        </p>
+      </div>
+                                          <!-- Table of Contents -->
+      <nav role="navigation" class="toc">
+        <h2><strong>Contents</strong></h2>
+        <ol>
+          <li><a href="#introduction">Introduction </a></li>
+          <li> <a href="#">Optical Remote Sensing  </a>
+          <li><a href="#"> Thermal Remote Sensing</a></li>
+			<ul>
+				<li><a href="#">3.1 Thermal Inertia Method</a></li>
+				<li><a href="#">3.2 Temperature/Vegetation Index Method</a></li>
+			</ul>
+          <li><a href="#microwaveremotesensing">Microwave Remote Sensing </a></li>
+				<ul>
+					<li><a href="#">4.1 Passive Microwave Remote Sensing</a></li>
+					<ul>
+						<li><a href="#">4.1.1 Surface-Emission Model</a></li>
+						<ul>
+							<li><a href="#">4.1.1.1 Soil Emission Model</a></li></a>
+							<li><a href="#">4.1.1.2 Emission Model for Vegetation Covered Areas</a></li>
+						</ul>
+						<li><a href="#">4.1.2 Spaceborne Passive Microwave Sensors </a></li>
+					</ul>
+				</ul>
+		
+			<!-- </ul>
+			<ol> -->
+			
+			<li><a href="#">Missions</a></li>
+				<ul>
+					<li><a href="#">5.1 SMAP</a></li>
+					<li><a href="#">5.1 SMOS</a></li>
+				</ul>
+			<li><a href="#">Study Area</a></li>
+			<li><a href="#">Data Downloading</a></li>
+			<li><a href="#">Results</a></li>
+			<li><a href="#">Conclusions</a></li>
+			<li><a href="#">Refrences</a></li>
+		
+			</ol>
+      </nav>
+                                          <!-- MAIN -->
+      <main>
+        <article>
+          <div class="text">
+            <h2><strong>1. Introduction</strong> </h2>
+          <p>
+			  Soil moisture is a vital element of the ecosystem sustaining life-supporting activities at micro and mega scales. The comparatively small quantity of water stored in the upper layers of the soil has a crucial role in terrestrial biology, atmospheric moisture, and energy fluxes.Soil moisture demonstrates high spatial and temporal variability owing to its heterogeneous characteristics and variations in precipitation and depends upon the topography, soil, land cover, and climatic conditions.
+            In order to have precise information about possible thunderstorm location forecasts, the variability of temperatures and identify other problems that can cause restricted visibility like fog, haze or smog, it is imperative to have knowledge of the wetness patterns.
+            
+            The importance of soil moisture for human and plant growth can be analyzed by the usage it provides. Measurement of this parameter is crucial to agricultural aspects due to its importance for monitoring drought, and its role in famine prevention cannot be overlooked.
+            
+            In-situ methods can accurately estimate soil moisture throughout the calibrated locality, but the information is localized. Space-borne remote sensing of soil moisture is not bounded by calibration conditions and has been used worldwide for over three decades. Soil moisture estimation by means of remote sensing is based upon the assessment of electromagnetic energy that has either been reflected (active) or emitted (passive) from the soil surface.
+		</p>
+              
+         <p>
+			 Soil moisture is measured at scales ranging from point scale (in situ) to satellite footprint scales (~40 km) at various temporal resolutions. The accuracy of measurement networks of in situ sensors of soil moisture content is significantly high but is very sparse. On the other hand, satellite-based remote sensing of soil moisture measurements using C- and X-band channels (6 to 11 GHz or 3 to 5 cm wavelength) from the EOS Advanced Multichannel Scanning Radiometer (AMSR-E) and US Navy’s WindSat instruments are of coarse spatial resolution (>50 km) with shallow sensing depth (~1 cm). Satellite-based C- and X-band radiometers also have low sensitivity to soil moisture for even small amounts of vegetation, leading to high soil moisture retrieval errors. At lower frequencies, the atmosphere is less opaque, the intervening vegetation biomass is more transparent, and the effective microwave emission is more representative of the soil below the surface skin layer. European Space Agency’s Soil Moisture and Ocean Salinity (SMOS) satellite, launched in November 2009, is the first wide-swath L-band soil moisture mission (operating at 1.4 GHz or ~21 cm wavelength) and retrieves soil moisture over a relatively higher range of vegetation conditions at a spatial resolution of ~40 km with a sensing depth of ~5 cm (Kerr et al. 2001)
+		</p>
+          </div>
+          <DIV class="text">
+            <h2><strong>2. Optical Remote Sensing</strong> </h2>
+            <p>
+				The utilization of the solar domain with wavelengths in the range of 0.4 to 2.5 μm for remote sensing of soil moisture content is called reflectance (Sadeghi et al., 1984). It measures the reflected radiation of the sun from the Earth's surface. Extensive studies have been conducted to explore the relationships between Soil Moisture content and reflectance and are well documented (e.g., Weidong et al., 2002; Gao et al., 2013). Findings from those studies have indicated the inverse relationship between reflectance and soil moisture (Angstrom, 1925). With the decrease in reflectance, soil moisture has been discovered to increase, whereas some studies claim a non-linear relationship between the mentioned parameters. In comparison with microwave and thermal infrared domains, the solar domains have been given little attention, but numerous investigations (Dalal and Henry, 1986; Schlesinger et al., 1996; Sommer et al., 1998; Leone and Sommer, 2000) have proven this domain to be capable in the estimation of soil moisture.<br>
+
+            	Various studies have proposed the idea of a diverse interlink between soil surface reflectance and soil moisture content, based on the principle of developing a spectral vegetation index that can indicate spectral properties (e.g., growth, amount, stress) and extent of vegetation moisture stress. Wang and Qu designed a normalized multiband drought index (NMDI) in 2007 for remote sensing of soil and vegetation water content per their spectral signatures. The difference between two liquid absorption bands (1.64 and 2.13 μm) was utilized as the soil and vegetation water-sensitive band. A study examining the empirical exponential relationship between reflectance and soil moisture over a vegetated area was achieved through the linear decomposition of mixed pixels in a red (RED)-near-infrared (NIR) spectral feature space (Gao et al., 2013). They concluded that the proposed method could be used to monitor soil moisture with a correlation coefficient exceeding 0.80, which satisfied the application needs.
+		</p>
+        <p>
+            Although the empirical-based approaches are evidently competent, they show significant variations when applied outside the locality of their calibrated zone. The reason for the variations neglected in the empirical proposals is that soil moisture content depends on numerous factors such as organic matter content, soil mineral composition, surface roughness, and soil texture. (Asner, 1998; Ben-Dor et al., 1999)<br>
+
+            Despite the presence of a great many optical sensors currently in orbit, minor literary works exist on the exploitation of visible, NIR, SWIR, and/or hyperspectral EO observations on the retrieval of surface soil moisture content. Their non-existence may be directed to the fact that optical signals are highly attenuated by the Earth's atmosphere, and their ability to penetrate clouds and vegetation canopy is limited (Zhao and Li, 2013). According to the ecological setting, soil moisture's inherent properties are factors affecting soil moisture, which produces high variations in reflectance measurement data.<br>
+
+            Although it is generally accepted that techniques utilizing reflected spectral information are not able to offer a particularly feasible solution for measuring soil moisture content, they have the advantage of providing estimates of soil moisture at high spatial resolutions in comparison to other types of sensors (e.g., microwave instruments).
+        </p>
+        </DIV>
+          <div class="text">
+            <h2><strong>3. Thermal Remote Sensing</strong></h2>
+            <p>
+              Thermal infrared remote sensing is based on the principle that land surface temperature is sensitive to surface soil moisture content due to the surface heating process under bare soil or sparse vegetation cover conditions. (Zhao and Li, 2013) An electromagnetic wavelength between 3.5 and 14 μm is utilized to measure the thermal emission of the Earth. (Curran, 1985).
+              The rationale behind TIR remote sensing of SMC is to primarily rely on soil surface temperature estimations, either singly like the thermal inertia method or in combination with vegetation indices as in the temperature/vegetation index method.
+            </p>
+            <h3><strong>3.1 Thermal Inertia method</strong> </h3>
+            <p>
+				Thermal inertia is defined as the resistance to temperature variations induced by exterior energy. Thermal properties of the soil, intrinsic factor of soil surface temperature change, are greatly influenced by variations in soil moisture. Thermal inertia and temperature have an inverse relationship. has been highly correlated with the SMC. Areas with higher soil moisture content are cooler during the day and warmer at night. (Van de Griend and Engman, 1985).The primary properties controlling the soil’s daily temperature range are the soil thermal conductivity l and the soil heat capacity CT (Verstraeten et al., 2006).
+			</p>
+                                         <!-- FORMULA1 HERE -->
+
+          <div class="formula">
+            $$T I=\sqrt{\left(\lambda C_{T}\right)}$$
+          </div>
+          <p>
+			  expresses the soil thermal inertia. I proportionally increase when the soil water content increases, thereby reducing the diurnal     temperature fluctuation range.his method, simple and easy to use, has a clear physical meaning and can achieve high accuracy in estimating soil moisture conditions. However, it is only applicable in the regions with no or little vegetation cove (Xue and Ni, 2006)
+          </p>
+          </div>
+          <div class="text">
+            <h4><strong>3.2 Temperature/vegetation index method</strong> </h4>
+            <p>
+				Contrary to the prior model, this method presents a complicated dependence of vegetation
+                and land surface temperature (LST) on soil moisture. Extensive analysis of data by
+                Carlson et al. (1994) and Gillies et al. (1997) showed that there is a unique relationship
+                referred to as the “Universal Triangle'' among soil moisture (Ws), the Normalized
+                Difference Vegetation Index (NDVI), and the LST for a concerned region. The results
+                were later supported by the theoretical studies conducted using a soil-vegetationatmosphere transfer (SVAT) model by Gillies and Carlson (1995), which aimed at describing the basic evaporation processes at the surface, together with the water
+                categorizing among vegetation transpiration, drainage, surface runoff, and soil moisture
+                variations
+			</p>
+                <p>
+                  The coordinates are scaled temperature and NDVI, respectively, such that:
+                </p>
+                <div class="formula">
+                  $$T^{*}=\frac{T-T_{o}}{T_{S}-T_{o}}$$
+                </div>
+                <div class="formula">
+                  $$N D V I^{*}=\frac{N D V I-N D V I_{o}}{N D V I_{S}-N D V I_{o}}$$
+                </div>
+                <p>
+				  where, T and NDVI are estimated LST and NDVI, respectively, and the subscripts o and
+                  s stand for minimum and maximum values. Carlson et al. (1994) formulated that the
+                  relationship between soil moisture,<em>NDVI*</em> , and <em>T*</em> can be expressed through a regression
+                  formula such as:
+				</p>
+                  <div class="formula">$$W_{s}=\sum_{i=0}^{i=n} \sum_{j=0}^{j=n} \mathrm{a}_{i j} \mathrm{NDVI}^{*(i)} T^{*(j)}$$</div>
+
+                  <p>
+					TIR remote sensing has its limitations, such as shallow soil penetration and cloud
+                    contamination (Moran et al., 2004). The variations across time and land cover come out
+                    to be great (Smith and Choudhury, 1991; Czajkowski et al., 2000) as they are empirical
+                    and dependent upon local meteorological conditions (wind speed, air temperature,
+                    humidity) (Nemani et al., 1993).
+                    Even though a direct application to field studies seems to be lacking (Minacapilli et al.,2009), results from these limited studies have been promising.
+                  </p>
+          </div>
+          <div class="text">
+            <h2><strong>4. Microwave Remote Sensing</strong></h2>
+				<p>
+					Estimation of soil moisture by measuring the electromagnetic radiation in the microwave region between 0.5 and 100 cm is termed    microwave remote sensing.With the aid of microwaves, satellites can carry out remote sensing any time of the day regardless of the lighting conditions. Microwave emissions, at selected frequencies, possess good cloud penetration (average 70%); they are insensitive to vegetation as well. The two main properties governing microwave remote sensing are polarisation and frequency. Polarisation is significantly affected by the variation in wavelength and the emitting or reflecting material, which allows the differentiation among soil, liquid, and frozen elements on both land and ocean surfaces.
+				    The fundamental principle lies in the significant contrast between the dielectric properties of water (~80) and soil particles (< 4). With the increase in moisture content, the dielectric constant of the soil-water mixture increases, and the variation is captured using microwave radiometers. (Dobson et al., 1985)
+			</p>
+
+              <h3><strong>4.1 Passive Remote Sensing</strong></h3>
+                <p>
+					It has been 35 years since passive microwave sensing of surface soil moisture came into existence, and it has still been widely used (Chen et al., 2012). Passive sensors utilize sensitive detectors to measure the emitted radiance of microwave emission from the Earth’s surface (at wavelengths &lambda; = 1–30 cm), expressed as brightness temperature (<em>TB</em>).
+                </p>
+                  <h3><strong>4.1.1 Surface-emission model</strong></h3>
+                  <h3><strong>4.1.1.1 Soil emission model</strong></h3>
+                
+                <p>
+                  The Surface-emission model is one of the essential components and most commonly used models in applying remote sensing of SMC on bare or vegetated surfaces. (Wang et al., 1983; Mo and Schmugge, 1987; Jackson and Schmugge, 1991; Jackson et al., 1999; Njoku and Li, 1999; Prigent et al., 2000; Wigneron et al., 2001; Shi et al., 2002; Njoku et al., 2003).<br>     
+                  This model states the soil surface-emission as a function of the surface roughness and dielectric properties, the Q/H model (Choudhury et al., 1979; Wang and Choudhury, 1981; Shi et al., 2003)
+				</p>
+                  <div class="formula">$$
+                    R_{p}^{e}=1-\varepsilon_{p}=\left[(1-Q) \cdot r_{p}+Q \cdot r_{q}\right] \cdot H
+                    $$</div>
+						<p>
+							Where 𝑅<sub>p</sub><sup><em>e</em></sup> and &epsilon;<sub>p</sub> are the surface effective reflectivity and emissivity at the polarization of p, respectively.
+						    The subscript p or q states the polarization state v or h; r is the surface reflectivity for a flat surface. The roughness parameter Q signifies the energy emitted in polarization due to the effects of surface roughness. The roughness parameter H is a measure of the surface roughness effect on surface effective reflectivity. The surface roughness parameters Q and
+						    H are usually determined empirically from the experimental data. (Wang et al., 1983; Mo and Schmugge, 1987; Shi et al. 2005)
+					</p>
+                      <h3><strong>4.1.1.2 Emission model for vegetation-covered areas</strong> </h3>
+						<p> 
+							When vegetation cover is present, the soil emission is attenuated by the vegetative cover,
+							and its radiation is added to the emitted wave. These effects are identified and estimated
+							using a radiative transfer model commonly known as the &tau;-&omega; model (Wigneron et al.,
+							2003). The two parameters, the optical depth τ, and the single scattering albedo &omega; 
+							compute vegetation attenuation properties and the scattering effects within the canopy
+							layer (Mo et al., 1982; Wigneron et al., 2003).
+                      </p>
+                      <p>
+						&tau;-&omega; model, the brightness temperature, 𝑇𝐵<sub>𝑝</sub> , of a soil and vegetation layer is the collection
+                        of three terms: the canopy attenuated soil emission, the direct vegetation emission, and
+                        the vegetation emission reflected by the soil and attenuated by the canopy:
+                        </p>
+                        <div class="scroll-wrapper">$$
+                          \begin{aligned}
+                          T_{B p}=& T_{s} \cdot \varepsilon_{p} \cdot \exp \left(-\tau_{c}\right)+T_{c} \cdot(1-\omega) \cdot\left[1-\exp \left(-\tau_{c}\right)\right]+T_{c} \cdot\left(1-\varepsilon_{p}\right) \cdot(1-\omega) \cdot\left[1-\exp \left(-\tau_{c}\right)\right] \cdot \exp \left(-\tau_{c}\right),
+                          \end{aligned}
+                          $$</div>
+                      <p>
+							  𝑇<sub>𝑠 </sub>and 𝑇<sub>𝑐</sub> are the temperatures (K) of the soil and vegetation canopy, &epsilon;<sub>p</sub> is the surface emissivity, &tau;<sub>c</sub>
+                              is the vegetation optical depth, and &omega; is the single scattering albedo
+						</p>
+
+                            <p>Soil moisture can then be estimated from r<sub>p</sub> smooth using the Fresnel and dielectric-soil
+                              moisture relationships. The surface reflectance r<sub>p</sub> is defined by the Fresnel equations,
+                              which describe the behavior of an electromagnetic wave at a smooth dielectric boundary.
+                              At horizontal polarization the electric field of the wave is oriented parallel to the reflecting
+                              surface and perpendicular to the direction of propagation. At vertical polarization the
+                              electric field of the wave has a component perpendicular to the surface. In the Fresnel
+                              equations below, &theta; is the SMAP incidence angle of 40&deg; and &epsilon; is the complex dielectric
+                              constant of the soil layer: </p>
+                              <div class="formula">$$
+                                r_{s, H}=\left|\frac{\operatorname{cou}-\sqrt{k-u}}{\operatorname{cou}+\sqrt{k-u}}\right|^{2}
+                                $$</div>
+                              <div class="formula">$$
+                                r_{s, V}=\left|\frac{k \cos \cos u-\sqrt{k-u}}{k \cos \cos u+\sqrt{k-u}}\right|^{2}
+                                $$</div>
+                            <p>
+								In terms of dielectric properties, there is a large contrast between liquid water (&epsilon;<sub>r</sub>  ~ 80) and dry soil (&epsilon;<sub>r</sub>~ 5). As soil moisture increases, soil dielectric constant increases. This leads to an increase in soil reflectivity or a decrease in soil emissivity (1 – r<sub>p</sub>). Note that low dielectric constant is not uniquely associated with dry soil. Frozen soil, independent of water content, has a similar dielectric constant to dry soil. Thus, a freeze/thaw flag is needed to resolve this ambiguity. As TB is proportional to emissivity for a given surface soil temperature, <em>TB</em> decreases in response to an increase in soil moisture. It is this relationship between soil moisture and soil dielectric constant (and hence microwave emissivity and brightness temperature) that forms the physical basis of passive remote sensing of soil moisture. Given SMAP observations of TB and information on <em>T<sub>eff</sub></em>, <em>h</em>, <em>&tau;</em>, and &omega;<sub>p</sub> from ancillary sources or multichannel algorithm approaches can be solved for the soil reflectivity r<sub>p</sub>, and equation solved for the soil dielectric &epsilon;. Soil moisture can then be estimated using one of several dielectric models and ancillary knowledge of soil texture.
+
+                              </p>
+                              <p>
+								  There is a significant contrast between liquid water (&epsilon;<sub>r</sub>  ~ 80) and dry soil (&epsilon;<sub>r</sub>~ 5). As soil
+                                moisture increases, the soil dielectric constant increases. This leads to increased soil
+                                reflectivity or a decrease in soil emissivity (1 – r<sub>p</sub>). Note that the low dielectric constant
+                                is not uniquely associated with dry soil. Frozen soil, independent of water content, has a
+                                similar dielectric constant to dry soil. Thus, a freeze/thaw flag is needed to resolve this
+                                ambiguity. As TB is proportional to emissivity for a given surface soil temperature, TB
+                                decreases in response to increased soil moisture. This relationship between soil moisture
+                                and soil dielectric constant (and hence microwave emissivity and brightness temperature)
+                                forms the physical basis of passive remote sensing of soil moisture. Given SMAP
+                                observations of TB and information on <em>T<sub>eff</sub></em>, <em>h</em>, <em>&tau;</em>, and ωp from ancillary sources or
+                                multichannel algorithm approaches can be solved for the soil reflectivity r<sub>p</sub>, and equation
+                                solved for the soil dielectric &epsilon;. Soil moisture can then be estimated using one of several
+                                dielectric models and ancillary knowledge of soil texture.<br>
+                                Several studies found that 𝜏𝑐 can be estimated through its relationship to the total
+                                vegetation water content W<sub>c</sub> (kg/m<sup>2</sup>) given by (Jackson and Schmugge, 1991):</p>
+                                  <div>$$
+                                  \tau_{c}=b \cdot W_{c} / \cos \theta
+                                  $$</div>
+                                <p>
+									Where <em>b</em> is a coefficient depending upon vegetation type (Jackson and Schmugge, 1991;
+                                  van de Griend and Wigneron, 2004), and &theta; is the incident angle.
+                                  The &Tau;-&omega; model can be applied successfully if factors influencing the brightness
+                                  temperature, such as instrument configuration and target characteristics, are invariant for
+                                  a particular locality (Schmugge et al., 1980; Schmugge, 1983; Engman and Chauhan,
+                                  1995).
+                                  </p>
+                                  <p>Passive remote sensing of soil moisture offers all-weather observations and better vegetation penetration, especially at the lower frequencies between 1 and 3 GHz (L band) (Njoku and Li, 1999; Njoku et al., 2002). Also, passive microwave remote sensing is not hampered by clouds, weather, or daytime-only acquisition conditions, as is the case in optical and thermal remote sensing.<br>
+
+                                  However, the application of passive microwave sensing has its share of drawbacks. First, the spatial resolution is inherently coarse, usually in the range of 10–20 km. Passive microwave instruments are typically characterized by broad spatial coverage, coarse spatial resolutions (25–50 km), and high temporal resolution (Wigneron et al., 2003; Moran et al., 2004).</p>
+
+
+                                  <h4><strong>4.1.2 Spaceborne Passive Microwave Sensors</strong></h4>
+                                  <p>
+									  Scanning Multichannel Microwave Radiometer (SMMR) on Nimbus-7, the Special Sensor Microwave/Imager (SSM/I) on Defense Meteorological Satellite Program (DMSP), the Tropical Rainfall Measuring Mission Microwave Imager (TRMM-TMI), the Advanced Microwave Scanning Radiometer-EOS (AMSR-E) on Aqua, and the upcoming soil moisture and ocean salinity (SMOS) mission by the European Space Agency (ESA), NASA hydrospheric states (HYDROS) mission, and Soil Moisture Active and Passive (SMAP) mission.
+                                  </p>
+
+          </div>
+          <div class="text">
+            <h3><strong>4.2 Active Remote Sensing</strong>  </h3>
+            <p>
+				Significant advancement has been achieved in mapping regional soil moisture with active microwave sensors. In this method, a microwave pulse is sent and received. The power of the received and sent signals are then compared, and the backscattering coefficient of the surface is determined, which is sensitive to soil moisture.
+            </p>
+
+            <h3><strong>4.2.1 Theoretical approach</strong></h3>
+            <p>
+				Diffraction theory of electromagnetic waves is the principle behind these theoretical approaches and have different ranges of validity, depending on the wavelength and the range of surface roughness" (Fung et al., 1992; D'Ursoa and Minacapillib, 2006).<br>
+				These models are reasonably effective in predicting the general trend of backscattering coefficient with variations in roughness or soil moisture content (Dubois and van Zyl, 1994).<br>
+              	However, the practical applicability of theoretical models is subdued by their complexity and the restrictive requirement for the parameterization of the soil surface and vegetation cover. (Ulaby et al., 1986).
+			</p>
+
+            <h3><strong>4.2.2 Empirical approach</strong></h3>
+
+            <p>
+				Empirical models are formulated based on the experimental measurements, which are further used to establish empirical relationships for soil moisture inversion from backscattering observations (Walker et al., 2004). Numerous empirically-based studies have proposed a linear relationship between the backscattering coefficient and SMC. It is a reliable approximation for a particular study site when the soil moisture lies in the range of approximately 10% and 35% (Zribi et al., 2005; Gorrab et al., 2014).<br>
+                Some studies have also detected the effect of roughness on the backscattering coefficient and suggested adding an exponential term in the linear relationship to describe its effect.<br>
+                
+                (Zribi and Dechambre, 2002; Baghdadi et al., 2006, 2007). Notably, some suggested that processing the difference between the images acquired during the wet season during the dry season can be compared to eliminate further the influence of surface roughness (Baghdadi et al., 2011; Baup et al., 2011
+			</p>
+            <p>
+				An example of an empirical method was put forth by Shoshany et al. (2000), who used
+                the normalized backscatter moisture index (NBMI) as the foundation for their soil
+            	 moisture retrieval algorithm:
+			</p>
+			 <div>
+				 $$ N B M I=\frac{\sigma_{t 1}^{0}-\sigma_{t 2}^{0}}{\sigma_{t 1}^{0}+\sigma_{t 2}^{0}} $$ <br>
+                   $$ W_{s}=a_{r} \cdot N B M I+b_{r} $$
+            </div>
+            <p> 
+				where &sigma;<sub>𝑡1</sub><sup>0</sup>and &sigma;<sub>𝑡2</sub><sup>0
+				are the backscatter coefficients at different time steps, and ar and br
+				are empirical parameters fitted from in situ soil moisture observations.
+            </p>
+				<p>
+					Empirical methods often yield accurate soil moisture results but may not be applicable for datasets that exceed the calibration conditions (Chen et al., 1995; Dubois et al., 1995) since a significant number of experimental measurements are required to formulate the general statistical parameters and establish an empirical relationship for inversion of soil moisture from backscattering observations (Oh et al., 1992).
+				</p>
+				<h4><strong>4.2.3 Semi-empirical models</strong></h4>
+				<P>
+					These models propose a compromise between the theoretical and empirical approaches,which have been developed based on a theoretical foundation with model parameters derived from experimental data. The first semi-empirical model used for soil moisture retrieval with polarimetric radar data was Oh et al. (1992)
+				</P>
+				<P>
+					The Oh model (Oh et al., 1992) interlinks the ratios of backscattering coefficients in separate polarisations to volumetric SMC and surface roughness. The model parameterization relies upon an extensive database of polarimetric data at multiple frequencies (L-, C-, and X-band) scatterometer experiments. The Oh model addresses both the co- and cross-polarized backscatter coefficient but does not consider multiple or secondary scattering processes. 
+				</P>
+				<P>
+					In contrast, the Dubois model (Dubois et al., 1995) was prepared with the help of scatterometer data estimated at six frequencies between 2.5 GHz and 11 GHz. The inversion applied in this model expresses the dielectric constant as a function of the HH (horizontal transmit and horizontal receive) and VV (vertical transmit and vertical receive) polarized backscatter and specific radar configuration parameters (wavelength and incidence angle).
+					<P>
+							The semi-empirical models discussed above do not consider the surface power spectrum,
+							which has close relation with the surface roughness correlation function and correlation
+							length. In addition, they were developed from a limited number of site-specific
+							observations due to the nonlinear character of backscattering to the soil moisture and
+							surface roughness parameters.		
+					</P>
+					<P>To overcome these drawbacks, (Shi et al. (1997)) developed an algorithm based on a single
+                        scattering Integral Equation Method (IEM) model, including the effect of the surface
+                        power spectrum.<BR>
+						Contrary to the Oh and Dubois models, the (Shi et al. (1997)) approach did not consider
+						the data previously measured in algorithm development, and the results directly connect
+						the SAR measurements to theoretical model predictions. Furthermore, the Shi et al. (1997)
+						algorithm was also derived using only L-band measurements (both airborne and
+						spaceborne) with an incidence angle range of 25 to 70. However, similar to the Dubois
+						model the validity of (Shi et al. (1997)) approach is only limited to co-polarized terms
+						(Barrett et al., 2009).
+					</P>
+					<p>
+						The primary advantage of the backscattering models is that they are not expected to
+						possess the site-specific problems commonly associated with empirical models (Walker et
+						al., 2004). These types of models are suited for bare soil surface conditions rather than
+						vegetated surfaces in most cases.
+					</p>
+				</P>
+				<h4><strong>4.2.4 Spaceborne Active Microwave Sensors</strong></h4>
+				<p>
+					ESA ERS-1/2 C-band SAR, ESA ENVISAT (ERS-3) C-band ASAR (Advanced SAR), the Canadian C-band RADARSAT-1/2, the Japanese L-band ALOS-PALSAR (Advanced Land Observing Satellite- Phased Array type L-band SAR, JERS-2), as well as the German X-band TerraSAT.
+				</p>
+          </div>
+		  <div class="text">
+				<h2>
+					<strong>5. Missions</strong>
+				</h2>
+				<h3>
+					<strong>5.1 SMAP</strong>
+					
+				</h3>
+					<p>
+						The Soil Moisture Active Passive (SMAP) satellite utilizes a combined passive (radiometer) and active (radar) microwave instruments at L-band to measure the land hydrospheric state globally. SMAP provides measurements of near-surface soil moisture (0–5 cm depth) and land freeze/thaw condition over a 1000 km swath with a global revisit of 2–3 days
+
+					</p>
+					<p>
+						The SMAP uses combined passive (radiometer) and active (radar) microwave instruments at L-band and parabolic mesh reflector. As shown in Figure, the reflector rotates about the nadir axis at 14.6 rpm (nominal), providing a surface incidence angle of approximately 40°. The reflector provides a radiometer 3 dB antenna footprint of 40 km and has a diameter of 6 m. The real-aperture radar and radiometer data are collected globally during both ascending and descending passes. The SMAP orbit parameters are
+					</p>
+					<ul class="list">
+						
+								<li>Orbit Altitude: 685 km</li>
+								<li>Inclination: 98 degrees (sun-synchronous) </li>
+								<li>Time of Ascending Node: 6 pm</li>
+								<li>Time of Descending Node: 6 am</li>
+					</ul>
+					<br>
+
+					<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.researchgate.net%2Fpublication%2F335597921%2Ffigure%2Fdownload%2Ffig1%2FAS%3A941819881857047%401601558766679%2FThe-SMAP-satellite-and-the-SMAP-ground-track-are-given.png&f=1&nofb=1" class=" img-fluid img-thumbnail" alt="SMAP Satellite and Ground Track" ><br>
+					<br>
+
+					<span>Fig 1 : SMAP satellite <a href="https://smap.jpl.nasa.gov/observatory/specifications/">(https://smap.jpl.nasa.gov/observator*-y/specifications/)</a></span>
+					<p>
+						To observe the difference between the active and passive sensors, we can analyse the soil
+						moisture content variations using passive and active-passive sensors of SMAP, which have
+						36 km and 9 km spatial resolution, respectively. The study area is the state of Bihar in
+						India from 26th July 2020 to 31st July 2020.
+					</p>
+					<br>
+
+					<img src="./images/image026.png" class=" img-fluid img-thumbnail" alt="comparison" ><br>
+
+					<span>Fig 2: Soil moisture variation over the state of Bihar using SMAP Active-Passive and SMAP Passive sensors.</span>
+
+					<h3><strong>5.2 SMOS</strong> </h3>
+					<p>
+						European Space Agency launched the Soil moisture and ocean salinity mission (SMOS) on 2nd November 2009. This satellite acquires data at 35 km resolution at the center of its field of view every three days. It has onboard a microwave imaging radiometer using aperture synthesis (MIRAS). It works in L-band (21cm – 1.4 GHz), acquires data at horizontal and vertical polarisations, and has a multi-incidence angle ranging from 0 to 55 degrees from nadir. The satellite orbit is Sun-synchronous, dawn/dusk, quasi-circular at 758 km altitude. The problem associated with low frequencies in a space-based receiver revolves around the fact that to have a reasonable spatial resolution (30-50 kilometers), a large antenna (5-10 meters) must be tough to fit in a standard satellite. In order to overcome this difficulty, an aperture synthesis approach that was already in use by radio-astronomers was adopted that, in order to detect small signals from point sources in space, routinely links radio-telescopes located in different locations to simulate a larger antenna than they have. The MIRAS instrument onboard SMOS has three foldable arms, each 3 meters long, that open in a Y shape and carry in total 69 small antennas that will provide measurements as a single large antenna3. For the retrievals, the SMOS Level 2 soil moisture algorithm was implemented. The modulation of soil and vegetation parameters is present in L-band microwave emission of the biosphere model (L-MEB), which uses the multi-angle incidence to retrieve the surface parameters applying a minimization of a cost function obtained between the measured and modeled brightness temperatures at the different angles (Wigneron et al. (2007).
+					</p>
+					<br>
+					<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.q7PjJjEJQKHEhD4lTw3oawHaFj%26pid%3DApi&f=1"class=" img-fluid img-thumbnail"  alt="SMOS Satellite " ><br>
+					<span>Fig 3 : SMOS satellite <a href="https://earth.esa.int/eogateway/missions/smos">(https://earth.esa.int/eogateway/missions/smos)</a></span>
+					 <div>
+			  <h2><strong>6. Study Area</strong></h2>
+					<p>
+						The study area has been selected as the entire Indian subcontinent. The geographical extent is within Latitudes- 5° to 40°N & Longitudes 55° to 100°E and the soil moisture variation and pattern was observed for the year 2020. The rationale behind this selection is that it offers a complete range of soil moisture values due to the availability of immensely varied soil moisture content throughout the country. Indian subcontinent offers all types of meteorological conditions and various agricultural practices, making it well suited for studying the variations mentioned above and methodologies.
+					</p>
+
+		  </div>
+		  <div>
+			  <h2><strong>7. Data Downloading</strong></h2>
+			  <p>
+				 The satellite data product was freely downloaded from the following link <a href="https://lpdaac.usgs.gov/tools/appeears/">A&rho;&rho;EEARS</a>, which is distributed by the LP DAAC, which operates as a partnership between the U.S. Geological Survey (USGS) and the National Aeronautics and Space Administration (NASA) and is a component of NASA’s Earth Observing System Data and Information System (<a href="https://earthdata.nasa.gov/about-eosdis">EOSDIS</a>). The data sets were obtained for the entire Indian sub-continent using SMAP passive microwave sensor and ESA’s Sentinel 1 Active SAR sensor. THE Gridded SMAP enhanced Level-3 radiometer soil moisture data product (Soil_Moisture_Retrieval_Data_AM_soil_moisture (SPL3SMP_E.004)) was freely downloaded on AppEEARS official website. The data product corresponds to a 9 km mean spatial resolution, which. It was required to input the latitudes and longitudes of the area in order to subset it; in this case, the downloaded data extent was as follows, Upper left latitude- 40, Upper left longitude- 55, Lower right latitude- 5, Lower left longitude- 100. As a result, all downloaded files were in .tif format, and the size of the image is 448 pixels by 438 lines. This is a daily product and for each day only for the ascending pass. So for 365 days of the year, a total of 748 .tif files were downloaded. ,<br>
+
+				Only the 6:00 AM local time overpass data (the time of the SMAP descending pass) was downloaded, as is approximately near 6:00 AM local time (the time of the SMAP descending pass), then <Tsub>c</Tsub> is roughly equal to Ts, and the two temperatures can be replaced by a single effective temperature (<em>T<sub>eff</Tsub></em>).
+			  </p>
+			  <h2><strong>8. Results</strong></h2>
+				<p>
+					Maps showing the variation in average monthly precipitation and soil moisture content for the year 2020 were prepared using the data from SMAP active-passive (9 Km) from NASA’s AppEEARS and with the aid of QGIS.
+			  </p>
+			  <p>
+				The 12 monthly average soil moisture maps generated are aligned systematically from January 2020 to December 2020 (Figure. 1, 2, and 3). The variation of soil moisture content over the entire Indian subcontinent is mainly controlled by seasons and significantly by monsoons. The maximum soil moisture content varies in the range of 38% to 40% by volume, which is restricted to southwestern India in August. From December to February, less than 10% soil moisture is observed in the western region of India, mainly in the west Rajasthan region, which geographically is a desert area. India experiences major monsoon rains in the months of mid-June, July, August, and September. This can be observed in the maps that the soil moisture variation in the map of August is depicting the range of 18% to 27% and a gradual decrease can be observed from the maps of November to February where most of the region show variations in the range of 0-0.225 and 0.225 - 0.450.<br>
+
+				The soil moisture content is considerably low in the months before monsoons, i.e., March to May.
+				<br>
+				<br>
+
+			  </p>
+							
+					<table>
+						<caption> Average Monthly Rainfall Data in India for the year 2020.</caption>
+						<thead>
+						<tr>
+							<th>MONTH</th>
+							<th>RAINFALL (mm)</th>
+						</tr>
+						<tbody>
+						<tr>
+							<td>January</td>
+							<td>26.58 </td>
+							
+						</tr>
+						<tr>
+							<td>February</td>
+							<td>14.81</td>
+							
+						</tr>
+						<tr>
+							<td>March</td>
+							<td>40.32</td>
+						</tr>
+						<tr>
+							<td>April</td>
+							<td>43.26</td>
+						</tr>
+						<tr>
+							<td>May</td>
+							<td>79.79</td>
+						</tr>
+						<tr>
+							<td>June</td>
+							<td>200.31</td>
+						</tr>
+						<tr>
+							<td>July</td>
+							<td>281.91</td>
+						</tr>
+						<tr>
+							<td>August</td>
+							<td>313.77</td>
+						</tr>
+						<tr>
+							<td>September</td>
+							<td>190.14</td>
+						</tr>
+						<tr>
+							<td>October</td>
+							<td>90.04</td>
+							<tr>
+							<td>November</td>
+							<td>27.53</td>
+						</tr>
+						<tr>
+							<td>December</td>
+							<td>14.35</td>
+						</tr>
+						</tbody>
+					</table>
+
+					-->
+					<br>
+					
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="9"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="10"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="11"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="12"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+					<img class="d-block w-100" src="./images/image028.jpg" alt="First slide">
+					
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image029.jpg" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image030.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image031.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image032.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image033.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image034.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image035.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image036.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image037.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image038.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image039.jpg" alt="Third slide">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<caption><strong>Fig 4 : </strong>Colour Coded Monthly Average Precipitation Variations in 2020</caption>
+			<!-- <div class="carousel-item">
+				<img src="./images/image028.jpg" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Jan</h5>
+					<p>.ra.</p>
+				</div>
+			</div> -->
+			<br>
+			<br>
+
+			<!-- SOIL MOISTURE CAROUSEL -->
+			<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="5"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="6"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="7"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="8"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="9"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="10"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="11"></li>
+					<li data-target="#carouselExampleIndicators1" data-slide-to="12"></li>
+					
+					
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+					<img class="d-block w-100" src="./images/image040.jpg" alt="First slide">
+					
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image041.jpg" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image042.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image043.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image044.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image045.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image046.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image047.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image048.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image049.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image050.jpg" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+					<img class="d-block w-100" src="./images/image051.jpg" alt="Third slide">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<br>
+
+			<caption><strong>Fig 5 :</strong> Colour Coded Monthly Average Soil Moisture Variations in 2020 over Indian
+							Sub-Continent Derived from SMAP </caption>
+			
+
+			<br>
+
+			<br>
+
+					<img src="./images/image052.jpg" class=" img-fluid img-thumbnail" alt="comparison" ><br>
+					<br>
+					<span><strong>Fig 6:</strong> Time series of retrieved soil moisture (m <sup>3</sup>/m <sup>3</sup>) SMAP from <a href="http://giovanni.gsfc.nasa.gov/giovanni/">http://giovanni.gsfc.nasa.gov/giovanni/</a>
+					</span>
+
+			<h2><strong>9. Conclusions</strong></h2>
+		  <p>
+			  This paper provides an overview of the methodologies present for satellite-based techniques for remote sensing of soil moisture content and presents a comprehensive study on the variation of precipitation and soil variation in the Indian subcontinent for the year of 2020.
+		  </p>
+		  <p>
+			  It outlines the basic principles of the satellite-based techniques for soil moisture estimation and reviews briefly the two popular missions for remote sensing of soil moisture that are Soil Moisture and Ocean Salinity (SMOS) by European Space Agency and Soil Moisture Active Passive (SMAP) from NASA.
+		  </p>
+		  <p>
+			  At present Microwave remote sensing has proven to be the most effective technique for soil moisture estimation, with advantages for all-weather observations, better cloud and vegetation penetration abilities and solid physics. Soil moisture can be estimated using passive radiometer or active radar measurements. Passive microwave has more potential for large-scale soil moisture monitoring but has a low spatial resolution. Active microwaves can provide high spatial resolution but have low revisit frequency and are more sensitive to soil roughness and vegetation.
+		  </p>
+		  <p>   
+			As for the variation in soil moisture over Indian subcontinent, it can be observed to be in close agreement with the rainfall pattern and seasonal change. Months of June to September received maximum rainfall which is observed in the soil moisture maps as well. A close view of rainfall data indicates that August experienced the highest rainfall of 313.77 mm. The average soil moisture map of August-2020 clearly reflects the mentioned fact.<br>
+
+			Therefore, this paper shows that average soil moisture maps generated from SMAP data product give a justifiable qualitative temporal and spatial variation over the Indian subcontinent which is supported by the actual rainfall occurred in the region. The spatial resolution of the sensor is 9 km which is a significant improvement from previous years.  Due to high temporal resolution and large area coverage, the active-passive and passive microwave SMAP sensor enables to understand the soil moisture variation over the region of interest. 
+		  </p>
+		  <hr>
+		     <div class="footnotes">
+
+			<p>Refrences</p>
+        <p id="fn1">
+          1. From
+          <a
+            href="https://www.math.brown.edu/~res/MFS/handout8.pdf">https://www.math.brown.edu/~res/MFS/handout8.pdf</a>.
+          <a href="#ref1" title="Jump back to footnote 1 in the text.">↩</a>
+        </p>
+        <p id="fn2">
+          2. “Definition.” Merriam-Webster.com Dictionary, Merriam-Webster,
+          <a
+            href="https://www.merriam-webster.com/dictionary/definition">https://www.merriam-webster.com/dictionary/definition</a>.
+          Accessed 18 May. 2020.
+          <a href="#ref2" title="Jump back to footnote 2 in the text.">↩</a>
+        </p>
+      </div>
+        </article>
+      </main>
+
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
